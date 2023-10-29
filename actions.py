@@ -49,9 +49,23 @@ class Actionslk():
 
     def like_seguir(self):
         while True:
-            self.linkelike()
+            try:
+                mark_like = py.locateCenterOnScreen(self.img_like, confidence=0.8)
+                mark_seguir = py.locateCenterOnScreen(self.img_seguir, confidence=0.8)
+                if mark_like is not None:
+                    py.moveTo(mark_like)
+                    py.click()
+                
+                elif mark_seguir is not None:
+                    py.moveTo(mark_seguir)
+                    py.click()
+                else:
+                    print('imagem nao encontrada!!')
+                    py.press('pagedown')
+                sleep(1)
+            except Exception as e:
+                print(f'error: {e}')
             sleep(1)
-            self.seguir()
 
     def ap_like(self):
         while True:

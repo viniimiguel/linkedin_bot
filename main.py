@@ -20,11 +20,11 @@ class Bot():
             print('iniciando função 1')
         
         elif self.definicao == 2:
-            self.use_seguir()
+            self.use_like_seguir()
             print('iniciando função 2')
 
         elif self.definicao == 3:
-            self.use_like_seguir()
+            self.use_seguir()
             print('iniciando função 3')
 
         elif self.definicao == 4:
