@@ -17,80 +17,105 @@ class Actionslk():
         self.centro_y = self.altura//2
 
     def linkelike(self):
-        while True:
-            try:
-                mark_like = py.locateCenterOnScreen(self.img_like, confidence=0.8)
-                if mark_like is not None:
-                    py.moveTo(mark_like)
-                    py.click()
-                
-                else:
-                    print('imagem nao encontrada!!')
-                    py.press('pagedown')
-                sleep(1)
-            except Exception as e:
-                print(f'error: {e}')
+        try:
+            mark_like = py.locateCenterOnScreen(self.img_like, confidence=0.8)
+            if mark_like is not None:
+                py.moveTo(mark_like)
+                py.click()
+            
+            else:
+                print('imagem nao encontrada!!')
+                py.press('pagedown')
+            sleep(1)
+        except Exception as e:
+            print(f'error: {e}')
+        sleep(1)
             
     def seguir(self):
-        while True:
-            try:
-                mark_seguir = py.locateCenterOnScreen(self.img_seguir, confidence=0.8)
+        try:
+            mark_seguir = py.locateCenterOnScreen(self.img_seguir, confidence=0.8)
+            
+            if mark_seguir is not None:
+                py.moveTo(mark_seguir)
+                py.click()
                 
-                if mark_seguir is not None:
-                    py.moveTo(mark_seguir)
-                    py.click()
-                else:
-                    print('imagem nao encontrada!!')
-                    py.press('pagedown')
-                sleep(1)
-            except Exception as e:
-                print(f'error: {e}')
-    
-    def conexoes(self):
+            else:
+                print('imagem nao encontrada!!')
+                py.press('pagedown')
+            sleep(1)
+        except Exception as e:
+            print(f'error: {e}')
+        sleep(1)
+
+    def like_seguir(self):
         while True:
-            try:
-                mark_conexoes = py.locateCenterOnScreen(self.img_conexoes, confidence=0.8)
-                result = py.locateCenterOnScreen(self.img_resultado, confidence=0.8)
+            self.linkelike()
+            sleep(1)
+            self.seguir()
 
-                if result is not None:
-                    py.moveTo(result)
-                    py.click()
-                    py.moveTo(self.centro_x, self.centro_y)
+    def ap_like(self):
+        while True:
+            self.linkelike()
+    
+    def ap_seguir(self):
+        while True:
+            self.seguir()
 
-                if mark_conexoes is not None:
-                    py.moveTo(mark_conexoes)
-                    py.click()
-                else:
-                    print('imagem nao encontrada!!')
-                    py.press('pagedown')
-                sleep(1)
-            except Exception as e:
-                print(f'error: {e}')
+    def conexoes(self):
+        try:
+            mark_conexoes = py.locateCenterOnScreen(self.img_conexoes, confidence=0.8)
+            result = py.locateCenterOnScreen(self.img_resultado, confidence=0.8)
+
+            if result is not None:
+                py.moveTo(result)
+                py.click()
+                py.moveTo(self.centro_x, self.centro_y)
+
+            if mark_conexoes is not None:
+                py.moveTo(mark_conexoes)
+                py.click()
+            else:
+                print('imagem nao encontrada!!')
+                py.press('pagedown')
+            sleep(1)
+        except Exception as e:
+            print(f'error: {e}')
 
                 
 
     def participe(self):
+        try:
+            mark_participe = py.locateCenterOnScreen(self.img_participe, confidence=0.8)
+            result = py.locateCenterOnScreen(self.img_resultado, confidence=0.8)
+
+            if result is not None:
+                py.moveTo(result)
+                py.click()
+                py.moveTo(self.centro_x, self.centro_y)
+
+            if mark_participe:
+                py.moveTo(mark_participe)
+                py.click()
+            else:
+                print('imagem nao encontrada!!')
+                py.press('pagedown')
+            sleep(1)
+        except Exception as e:
+            print(f'error{e}')
+
+    def conexoes_participacoes(self):
         while True:
-            try:
-                mark_participe = py.locateCenterOnScreen(self.img_participe, confidence=0.8)
-                result = py.locateCenterOnScreen(self.img_resultado, confidence=0.8)
+            self.conexoes()
+            sleep(1)
+            self.participe()
 
-                if result is not None:
-                    py.moveTo(result)
-                    py.click()
-                    py.moveTo(self.centro_x, self.centro_y)
+    def ap_conexoes(self):
+        while True:
+            self.conexoes()
 
-                if mark_participe:
-                    py.moveTo(mark_participe)
-                    py.click()
-                else:
-                    print('imagem nao encontrada!!')
-                    py.press('pagedown')
-                sleep(1)
-            except Exception as e:
-                print(f'error{e}')
+    def ap_participe(self):
+        while True:
+            self.participe()
 
-actionslk = Actionslk()
-actionslk.participe()
     
 

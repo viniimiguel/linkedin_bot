@@ -9,6 +9,7 @@ from selenium.webdriver.common.keys import Keys
 
 
 
+
 class Linkedin():
     def __init__(self):
         self.driver = webdriver.Chrome()
@@ -24,10 +25,14 @@ class Linkedin():
         self.senha = input('digite sua senha:  ')
 
     def main(self):
-        self.abre()
-        sleep(5)
-        self.loga()
-        sleep(5)
+        try:
+            self.abre()
+            sleep(5)
+            self.loga()
+        except Exception as e:
+            print(f'Erro: {e}')
+    
+    
 
     def abre(self):
         self.driver.get(self.site_link)
